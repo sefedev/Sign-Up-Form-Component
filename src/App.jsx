@@ -40,7 +40,7 @@ function App() {
 
     setErrors(newErrors);
 
-    console.log(errors)
+    console.log(errors);
     return Object.keys(newErrors).length === 0;
   };
 
@@ -48,6 +48,7 @@ function App() {
     e.preventDefault();
     if (validate()) {
       console.log("Valid form");
+      console.log(errors.firstName);
     } else {
       console.log("Invalid Form");
     }
@@ -55,7 +56,7 @@ function App() {
 
   return (
     <>
-      <div className="flex sm:flex-col sm:items-center sm:text-center min-h-screen bg-[url('./assets/bg-intro-desktop.png')] sm:bg-[url('./assets/bg-intro-mobile.png')] bg-red-400 opacity-75 text-white py-14 sm:px-3 px-36">
+      <div className="flex sm:flex-col md:flex-col sm:items-center sm:text-center min-h-screen bg-[url('./assets/bg-intro-desktop.png')] sm:bg-[url('./assets/bg-intro-mobile.png')] bg-red-400 opacity-75 text-white py-14 sm:px-3 px-36">
         <div className="flex flex-col justify-center lg:px-20">
           <h1 className="font-bold sm:font-semibold text-4xl sm:text-3xl sm:px-4 mb-6">
             Learn to code by watching others
@@ -79,9 +80,8 @@ function App() {
                 className="border border-gray-300 rounded-md p-4 w-full mb-4"
                 value={formData.firstName}
                 onChange={handleChange}
-                required
               />
-              {errors && <p>{errors.firstName}</p>}
+              {errors.firstName && <p>{errors.firstName}</p>}
               <input
                 type="text"
                 name="lastName"
@@ -89,7 +89,6 @@ function App() {
                 className="border border-gray-300 rounded-md p-4 w-full mb-4"
                 value={formData.lastName}
                 onChange={handleChange}
-                required
               />
               <input
                 type="email"
@@ -98,7 +97,6 @@ function App() {
                 className="border border-gray-300 rounded-md p-4 w-full mb-4"
                 value={formData.email}
                 onChange={handleChange}
-                required
               />
               <input
                 type="password"
@@ -107,9 +105,11 @@ function App() {
                 className="border border-gray-300 rounded-md p-4 w-full mb-4"
                 value={formData.password}
                 onChange={handleChange}
-                required
               />
-              <button className="bg-green-400 hover:bg-green-300 transition duration-150 w-full py-4 px-6 mb-4 rounded-md shadow-xl text-white tracking-widest">
+              <button
+                type="submit"
+                className="bg-green-400 hover:bg-green-300 transition duration-150 w-full py-4 px-6 mb-4 rounded-md shadow-xl text-white tracking-widest"
+              >
                 CLAIM YOUR FREE TRIAL
               </button>
               <p className="text-xs text-gray-400 leading-6">
